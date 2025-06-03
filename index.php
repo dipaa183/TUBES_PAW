@@ -320,7 +320,7 @@ $recent_orders = getAllPemesanan();
                 <div class="col-lg-3 col-md-6">
                     <h3 class="h4 mb-4">Kontak Kami</h3>
                     <ul class="list-unstyled text-white-50">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Teknologi No. 123, Jakarta</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Jl. Tanjung Gedong Baru No. 30, Grogol, Jakarta Barat.</li>
                         <li class="mb-2"><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
                         <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@fotokopionline.com</li>
                         <li class="mb-0"><i class="fas fa-clock me-2"></i> Buka 24/7 Online</li>
