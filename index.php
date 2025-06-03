@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once __DIR__ . '/config/db.php';
 include_once __DIR__ . '/functions/pemesanan.php';
 
@@ -32,27 +33,71 @@ $recent_orders = getAllPemesanan();
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
+            <a class="navbar-brand" href="index.php">Fotokopi Online</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white mx-2" href="index.php"><i class="fas fa-home me-1"></i>
-                            Beranda</a>
+                        <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'index.php' ? 'active' : '' ?>"
+                            href="index.php">
+                            <i class="fas fa-home me-1"></i> Beranda
+                        </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white mx-2" href="pages/list_pemesanan.php"><i
-                                class="fas fa-clipboard-list me-1"></i> Pesanan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white mx-2" href="login.php"><i class="fas fa-sign-in-alt me-1"></i>
-                            Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white mx-2" href="register.php"><i class="fas fa-user-plus me-1"></i>
-                            Register</a>
-                    </li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'list_pemesanan.php' ? 'active' : '' ?>"
+                                href="pages/list_pemesanan.php">
+                                <i class="fas fa-clipboard-list me-1"></i> Pesanan
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <!-- Menu ketika user sudah login -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-bs-toggle="dropdown">
+                                <i class="fas fa-user-circle me-1"></i> <?= htmlspecialchars($_SESSION['user_name']) ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt me-1"></i>
+                                        Logout</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link position-relative" href="cart.php">
+                                <i class="fas fa-shopping-cart me-1"></i> Keranjang
+                                <?php if (!empty($_SESSION['cart'])): ?>
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        <?= count($_SESSION['cart']) ?>
+                                    </span>
+                                <?php endif; ?>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <!-- Menu ketika user belum login -->
+                        <li class="nav-item">
+                            <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'login.php' ? 'active' : '' ?>"
+                                href="login.php">
+                                <i class="fas fa-sign-in-alt me-1"></i> Login
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'register.php' ? 'active' : '' ?>"
+                                href="register.php">
+                                <i class="fas fa-user-plus me-1"></i> Register
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>
