@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_SESSION['cart'])) {
         // Bersihkan keranjang
         $_SESSION['cart'] = [];
 
-        // Redirect ke halaman terima kasih
-        header('Location: thanks.php');
+        // Redirect ke halaman pembayaran
+        header('Location: payment.php');
         exit;
     } catch (Exception $e) {
         // Rollback jika ada error
