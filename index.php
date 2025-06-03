@@ -45,7 +45,7 @@ $recent_orders = getAllPemesanan();
                             <i class="fas fa-home me-1"></i> Beranda
                         </a>
                     </li>
-                    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'admin'): ?>
+                    <?php if (isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                         <li class="nav-item">
                             <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'list_pemesanan.php' ? 'active' : '' ?>"
                                 href="pages/list_pemesanan.php">
@@ -53,7 +53,6 @@ $recent_orders = getAllPemesanan();
                             </a>
                         </li>
                     <?php endif; ?>
-
                 </ul>
 
                 <ul class="navbar-nav">
@@ -65,7 +64,6 @@ $recent_orders = getAllPemesanan();
                                 <i class="fas fa-user-circle me-1"></i> <?= htmlspecialchars($_SESSION['user_name']) ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -73,17 +71,20 @@ $recent_orders = getAllPemesanan();
                                         Logout</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link position-relative" href="cart.php">
-                                <i class="fas fa-shopping-cart me-1"></i> Keranjang
-                                <?php if (!empty($_SESSION['cart'])): ?>
-                                    <span
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        <?= count($_SESSION['cart']) ?>
-                                    </span>
-                                <?php endif; ?>
-                            </a>
-                        </li>
+
+                        <?php if ($_SESSION['role'] !== 'admin'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link position-relative" href="cart.php">
+                                    <i class="fas fa-shopping-cart me-1"></i> Keranjang
+                                    <?php if (!empty($_SESSION['cart'])): ?>
+                                        <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            <?= count($_SESSION['cart']) ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     <?php else: ?>
                         <!-- Menu ketika user belum login -->
                         <li class="nav-item">
@@ -320,14 +321,14 @@ $recent_orders = getAllPemesanan();
                 <div class="col-lg-3 col-md-6">
                     <h3 class="h4 mb-4">Kontak Kami</h3>
                     <ul class="list-unstyled text-white-50">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Jl. Tanjung Gedong Baru No. 30, Grogol, Jakarta Barat.</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Jl. Teknologi No. 123, Jakarta</li>
                         <li class="mb-2"><i class="fas fa-phone me-2"></i> (021) 1234-5678</li>
                         <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@fotokopionline.com</li>
                         <li class="mb-0"><i class="fas fa-clock me-2"></i> Buka 24/7 Online</li>
                     </ul>
                 </div>
                 <div class="col-lg-3">
-                    <!-- Additional content can be added here -->
+
                 </div>
             </div>
             <hr class="my-4 bg-secondary">
