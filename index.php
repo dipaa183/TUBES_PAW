@@ -45,7 +45,7 @@ $recent_orders = getAllPemesanan();
                             <i class="fas fa-home me-1"></i> Beranda
                         </a>
                     </li>
-                    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'admin'): ?>
+                    <?php if (isset($_SESSION['user_id']) && isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                         <li class="nav-item">
                             <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'list_pemesanan.php' ? 'active' : '' ?>"
                                 href="pages/list_pemesanan.php">
@@ -65,7 +65,6 @@ $recent_orders = getAllPemesanan();
                                 <i class="fas fa-user-circle me-1"></i> <?= htmlspecialchars($_SESSION['user_name']) ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -73,6 +72,7 @@ $recent_orders = getAllPemesanan();
                                         Logout</a></li>
                             </ul>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link position-relative" href="cart.php">
                                 <i class="fas fa-shopping-cart me-1"></i> Keranjang
@@ -327,7 +327,7 @@ $recent_orders = getAllPemesanan();
                     </ul>
                 </div>
                 <div class="col-lg-3">
-                    <!-- Additional content can be added here -->
+
                 </div>
             </div>
             <hr class="my-4 bg-secondary">

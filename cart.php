@@ -4,13 +4,19 @@ if (isset($_GET['checkout_success'])) {
     echo '<div class="alert alert-success">Pesanan berhasil diproses!</div>';
 }
 
-
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login.php");
     exit;
 }
 
 require_once 'functions/pemesanan.php';
+
+// Mapping status enum -> label Indonesia
+$status_mapping_display = [
+    'pending' => 'Menunggu',
+    'processing' => 'Diproses',
+    'completed' => 'Selesai',
+];
 
 // Hapus item dari cart
 if (isset($_GET['remove'])) {
@@ -21,13 +27,10 @@ if (isset($_GET['remove'])) {
     exit;
 }
 
-
 $userOrders = getUserOrders($_SESSION['user_id']);
-
 
 // Total harga dari cart session
 $cartTotal = 0;
-
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -104,7 +107,7 @@ foreach ($_SESSION['cart'] as $item) {
         <!-- Tampilkan Riwayat Pemesanan dari Database -->
         <?php if (!empty($userOrders)): ?>
             <h4>Riwayat Pemesanan</h4>
-            <a href="index.php" class="btn btn-secondary">Beranda</a>
+            <a href="index.php" class="btn btn-secondary mb-3">Beranda</a>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -118,7 +121,16 @@ foreach ($_SESSION['cart'] as $item) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($userOrders as $order): ?>
+                    <?php foreach ($userOrders as $order):
+                        $status_value = $order['status'];
+                        $status_display = $status_mapping_display[$status_value] ?? ucfirst($status_value);
+                        $badge_class = match ($status_value) {
+                            'completed' => 'success',
+                            'processing' => 'warning',
+                            'pending' => 'secondary',
+                            default => 'dark',
+                        };
+                        ?>
                         <tr>
                             <td><?= htmlspecialchars($order['tanggal_pemesanan']) ?></td>
                             <td><?= htmlspecialchars($order['jenis_pemesanan']) ?></td>
@@ -127,11 +139,8 @@ foreach ($_SESSION['cart'] as $item) {
                             <td><?= $order['jumlah_copy'] ?></td>
                             <td>Rp <?= number_format($order['total_harga'], 0, ',', '.') ?></td>
                             <td>
-                                <span class="badge bg-<?=
-                                    $order['status'] == 'completed' ? 'success' :
-                                    ($order['status'] == 'processing' ? 'warning' : 'secondary')
-                                    ?>">
-                                    <?= ucfirst($order['status']) ?>
+                                <span class="badge bg-<?= $badge_class ?>">
+                                    <?= htmlspecialchars($status_display) ?>
                                 </span>
                             </td>
                         </tr>
