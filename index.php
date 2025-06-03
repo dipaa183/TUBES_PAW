@@ -53,7 +53,6 @@ $recent_orders = getAllPemesanan();
                             </a>
                         </li>
                     <?php endif; ?>
-
                 </ul>
 
                 <ul class="navbar-nav">
@@ -73,17 +72,19 @@ $recent_orders = getAllPemesanan();
                             </ul>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link position-relative" href="cart.php">
-                                <i class="fas fa-shopping-cart me-1"></i> Keranjang
-                                <?php if (!empty($_SESSION['cart'])): ?>
-                                    <span
-                                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                        <?= count($_SESSION['cart']) ?>
-                                    </span>
-                                <?php endif; ?>
-                            </a>
-                        </li>
+                        <?php if ($_SESSION['role'] !== 'admin'): ?>
+                            <li class="nav-item">
+                                <a class="nav-link position-relative" href="cart.php">
+                                    <i class="fas fa-shopping-cart me-1"></i> Keranjang
+                                    <?php if (!empty($_SESSION['cart'])): ?>
+                                        <span
+                                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                            <?= count($_SESSION['cart']) ?>
+                                        </span>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     <?php else: ?>
                         <!-- Menu ketika user belum login -->
                         <li class="nav-item">
