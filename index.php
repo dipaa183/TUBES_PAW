@@ -45,7 +45,7 @@ $recent_orders = getAllPemesanan();
                             <i class="fas fa-home me-1"></i> Beranda
                         </a>
                     </li>
-                    <?php if (isset($_SESSION['user_id'])): ?>
+                    <?php if (isset($_SESSION['user_id']) && $_SESSION['user_role'] === 'admin'): ?>
                         <li class="nav-item">
                             <a class="nav-link <?= basename($_SERVER['PHP_SELF']) == 'list_pemesanan.php' ? 'active' : '' ?>"
                                 href="pages/list_pemesanan.php">
@@ -53,6 +53,7 @@ $recent_orders = getAllPemesanan();
                             </a>
                         </li>
                     <?php endif; ?>
+
                 </ul>
 
                 <ul class="navbar-nav">
