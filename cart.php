@@ -148,6 +148,26 @@ foreach ($_SESSION['cart'] as $item) {
             </div>
         <?php endif; ?>
     </div>
+    <!-- Tombol ke Payment di pojok kanan bawah -->
+    <a href="payment.php" 
+       style="
+          position: fixed;
+          bottom: 30px;
+          right: 30px;
+          z-index: 9999;
+          background: #198754;
+          color: #fff;
+          padding: 16px 28px;
+          border-radius: 50px;
+          box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+          font-size: 18px;
+          text-decoration: none;
+          transition: background 0.2s;
+       "
+       onmouseover="this.style.background='#145c32'"
+       onmouseout="this.style.background='#198754'"
+    >
+        <b>Pembayaran</b>
+    </a>
 </body>
-
 </html>
