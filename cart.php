@@ -148,8 +148,8 @@ foreach ($_SESSION['cart'] as $item) {
                 </tbody>
             </table>
             <!-- Tombol Payment baru di bawah tabel status -->
-            <div class="d-flex justify-content-end mb-4">
-                <a href="payment.php" class="btn btn-success btn-lg">Pembayaran</a>
+            <div class="btn btn-primary btn-sm">
+                <a href="payment.php" class="btn btn-primary btn-sm">Pembayaran</a>
             </div>
         <?php else: ?>
             <div class="alert alert-info">Anda belum memiliki riwayat pemesanan.</div>
@@ -161,28 +161,5 @@ foreach ($_SESSION['cart'] as $item) {
             </div>
         <?php endif; ?>
     </div>
-    <!-- Hapus tombol Payment lama di pojok kanan bawah -->
-    <!--
-    <a href="payment.php"
-       style="
-          position: fixed;
-          bottom: 30px;
-          right: 30px;
-          z-index: 9999;
-          background: #198754;
-          color: #fff;
-          padding: 16px 28px;
-          border-radius: 50px;
-          box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-          font-size: 18px;
-          text-decoration: none;
-          transition: background 0.2s;
-       "
-       onmouseover="this.style.background='#145c32'"
-       onmouseout="this.style.background='#198754'"
-    >
-        <b>Pembayaran</b>
-    </a>
-    -->
 </body>
 </html>
