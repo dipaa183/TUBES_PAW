@@ -158,7 +158,7 @@ foreach ($_SESSION['cart'] as $item) {
         <?php endif; ?>
     </div>
     <!-- Tombol ke Payment di pojok kanan bawah -->
-    <a href="payment.php" 
+    <a href='payment.php'
        style="
           position: fixed;
           bottom: 30px;
