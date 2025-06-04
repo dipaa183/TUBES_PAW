@@ -179,5 +179,4 @@ foreach ($_SESSION['cart'] as $item) {
         <b>Pembayaran</b>
     </a>
 </body>
-<<<<<<< HEAD
 </html>
