@@ -147,6 +147,10 @@ foreach ($_SESSION['cart'] as $item) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <!-- Tombol Payment baru di bawah tabel status -->
+            <div class="d-flex justify-content-end mb-4">
+                <a href="payment.php" class="btn btn-success btn-lg">Pembayaran</a>
+            </div>
         <?php else: ?>
             <div class="alert alert-info">Anda belum memiliki riwayat pemesanan.</div>
         <?php endif; ?>
@@ -157,7 +161,8 @@ foreach ($_SESSION['cart'] as $item) {
             </div>
         <?php endif; ?>
     </div>
-    <!-- Tombol ke Payment di pojok kanan bawah -->
+    <!-- Hapus tombol Payment lama di pojok kanan bawah -->
+    <!--
     <a href="payment.php"
        style="
           position: fixed;
@@ -178,5 +183,6 @@ foreach ($_SESSION['cart'] as $item) {
     >
         <b>Pembayaran</b>
     </a>
+    -->
 </body>
 </html>
