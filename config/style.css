@@ -54,6 +54,18 @@ body {
   border-color: var(--primary-dark);
 }
 
+/* Tombol Login Hijau */
+.btn-login {
+  background-color: #198754;
+  border-color: #198754;
+  color: white;
+}
+
+.btn-login:hover {
+  background-color: #157347;
+  border-color: #157347;
+}
+
 .stat-number {
   font-size: 2.5rem;
   font-weight: 700;
