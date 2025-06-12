@@ -57,9 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </label>
                         </div>
                         <div class="form-check mb-4">
-                            <input class="form-check-input" type="radio" name="metode_pembayaran" id="ewallet" value="E-Wallet" required>
-                            <label class="form-check-label" for="ewallet">
-                                <i class="bi bi-wallet2"></i> E-Wallet
+                            <input class="form-check-input" type="radio" name="metode_pembayaran" id="ShopeePay" value="ShopeePay" required>
+                            <label class="form-check-label" for="ShopeePay">
+                                <i class="bi bi-wallet2"></i> ShopeePay
                             </label>
                         </div>
                         <button type="submit" class="btn btn-success btn-lg w-100">Bayar Sekarang</button>
