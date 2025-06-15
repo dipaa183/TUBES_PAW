@@ -85,8 +85,8 @@ $pemesanans = getAllPemesanan();
                     <th>Nama Pelanggan</th>
                     <th>File Upload</th>
                     <th>Jenis Pemesanan</th>
-                    <th>Jenis Warna</th>
                     <th>Ukuran Kertas</th>
+                    <th>Jenis Warna</th>
                     <th width="8%">Jumlah</th>
                     <th width="10%">Total Harga</th>
                     <th width="10%">Status</th>
@@ -124,8 +124,8 @@ $pemesanans = getAllPemesanan();
                                 <?php endif; ?>
                             </td>
                             <td><?= htmlspecialchars($p['jenis_pemesanan']) ?></td>
-                            <td><?= htmlspecialchars($p['jenis_warna']) ?></td>
                             <td><?= htmlspecialchars($p['ukuran_kertas']) ?></td>
+                            <td><?= htmlspecialchars($p['jenis_warna']) ?></td>
                             <td class="text-center"><?= (int) $p['jumlah_copy'] ?></td>
                             <td class="text-end">Rp <?= number_format($p['total_harga'], 0, ',', '.') ?></td>
                             <td>
