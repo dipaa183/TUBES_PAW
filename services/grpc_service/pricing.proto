@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package pricing;
+
+service PricingService {
+  rpc CalculatePrice (PricingRequest) returns (PricingResponse);
+}
+
+message PricingRequest {
+  int32 pages = 1;
+  string type = 2; // "color" or "bw"
+}
+
+message PricingResponse {
+  int32 total_price = 1;
+}
